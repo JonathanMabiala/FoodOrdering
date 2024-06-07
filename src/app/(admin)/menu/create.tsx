@@ -36,6 +36,8 @@ const CreatProductScreen = () => {
       setErrors("Price is not a number");
       return false;
     }
+
+    return true;
   };
 
   const onSubmit = () => {
