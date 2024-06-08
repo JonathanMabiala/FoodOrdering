@@ -12,7 +12,10 @@ const OrderItemListItem = ({ orderItem }: OrderItemListItemProps) => {
     <View style={styles.container}>
       <View>
         <View style={styles.imageAndText}>
-          <Image style={styles.image} source={{ uri: defaultPizzaImage }} />
+          <Image
+            style={styles.image}
+            source={{ uri: orderItem.products.image || defaultPizzaImage }}
+          />
           <View>
             <Text style={styles.productName}>{orderItem.products.name}</Text>
             <View style={{ flexDirection: "row" }}>
@@ -52,6 +55,7 @@ const styles = StyleSheet.create({
   image: {
     width: 90,
     aspectRatio: 1,
+    marginRight: 10,
   },
   productName: {
     fontWeight: "bold",
