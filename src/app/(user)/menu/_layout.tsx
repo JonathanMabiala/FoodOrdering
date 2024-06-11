@@ -16,7 +16,6 @@ export default function MenuStack() {
                   name="shopping-cart"
                   size={25}
                   color={Colors.light.tint}
-                  s
                   style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
                 />
               )}

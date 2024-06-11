@@ -1,21 +1,25 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
-import { OrderItem } from "@/types";
+import { OrderItem, Tables } from "@/types";
+import RemoteImage from "../RemoteImage";
 
 export const defaultPizzaImage =
   "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
 type OrderItemListItemProps = {
-  orderItem: OrderItem;
+  orderItem: { products: Tables<"products"> } & Tables<"order_items">;
 };
 const OrderItemListItem = ({ orderItem }: OrderItemListItemProps) => {
   return (
     <View style={styles.container}>
       <View>
         <View style={styles.imageAndText}>
-          <Image
+          <RemoteImage
             style={styles.image}
-            source={{ uri: orderItem.products.image || defaultPizzaImage }}
+            path={orderItem.products.image}
+            fallback={defaultPizzaImage}
+            resizeMode="contain"
           />
+
           <View>
             <Text style={styles.productName}>{orderItem.products.name}</Text>
             <View style={{ flexDirection: "row" }}>
