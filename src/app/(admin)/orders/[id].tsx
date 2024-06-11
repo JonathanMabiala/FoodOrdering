@@ -13,13 +13,19 @@ import OrderListitem from "@/components/orderComponents/OrderListitem";
 import { OrderStatusList } from "@/types";
 import Colors from "@/constants/Colors";
 import { useOrderDetails, useUpdateOrder } from "@/api/orders";
+import { notifyUserAboutOrderUpdate } from "@/lib/notifications";
 
 const OrderDetails = () => {
   const { id: idString } = useLocalSearchParams();
   const { mutate: updateOrder } = useUpdateOrder();
 
-  const updateSatus = (status: string) => {
+  const updateSatus = async (status: string) => {
     updateOrder({ id, updatedFields: { status } });
+
+    console.log("Notify:", order?.user_id);
+    if (order) {
+      await notifyUserAboutOrderUpdate({ ...order, status });
+    }
   };
   if (!idString) {
     return <Text>No id found</Text>;
